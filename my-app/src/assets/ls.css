@@ -1,0 +1,29 @@
+
+.inputBox{
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    width: 60%;
+    margin: 10px auto;
+    min-height: auto;
+}
+
+
+.linkToC{
+    margin: 0 auto;
+}
+
+.linkToL{
+    margin: 0 auto;
+}
+
+.btnC{
+    margin: 10px auto;
+}
+
+.btnL{
+    margin: 40px auto;
+}
+
+
+
