@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import './assets/ls.css';
 import Header from './reused/Header.jsx';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 
 function Log() {
+
+    const navigate = useNavigate();
 
     useEffect( () =>{
             const btn = document.querySelector('.btnL');
             const iptemail = document.querySelector('.email');
             const iptpass = document.querySelector('.pass');
             
-            const clicked = () =>{
+            const clicked = async () =>{
                 const email = iptemail.value.trim();
                 const pass = iptpass.value.trim();
     
@@ -19,7 +21,23 @@ function Log() {
                     alert('Por favor, preencha todas as informações abaixo')
                 } 
                 else {
-                    alert(`Seja bem-vindo, ${email}`)
+                    const response = await fetch('http://localhost:3000/users')
+                    const users = await response.json()
+
+                    //Procurar usuário pelo email
+
+                    const foundUser = users.find(user => user.email === email);
+
+                    if(!foundUser){
+                        alert('Usuário não encontrado, vá para a página de casdatro')
+                        navigate('/sign');
+                    } else if(foundUser.password !== pass){
+                        alert('Senha incorreta, por favor tente novamente');
+                    } else {
+                        alert(`Bem-vindo, ${foundUser.name}`);
+                        navigate('/store');
+                    }
+
                 }
             }
     

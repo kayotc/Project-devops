@@ -1,12 +1,11 @@
-import Header from "./reused/Header.jsx"
+import NavBar from "./reused/NavBar.jsx";
 import Products from "./reused/Products.jsx"
-
 function Store(){
     return (
         <div className='main'>
             <div className='rounded-lg content'>
-                <Header/>
-                <Products/>
+                <NavBar />
+                <Products />
             </div>
         </div>
     )
