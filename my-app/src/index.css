@@ -28,13 +28,12 @@ body{
     .content{
         flex-direction: column;
         display: flex;
-        margin: auto;
+        margin: 0 auto;
         height: 95vh;
         flex-grow: 1;
         background-color: var(--background-content);
         box-shadow: 2px 4px 8px rgba(0,0,0,.5);
-        gap: 1rem;
-        padding: .645rem;
+        overflow-x: hidden;
     }
 }
 
