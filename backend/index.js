@@ -10,11 +10,12 @@ app.use(cors()); //Permite conexão de qualquer origem
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '2302',
-    database: 'teste'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '2302',
+  database: process.env.DB_NAME || 'teste'
 });
+
 
 db.connect(err => { //Caso dê erro ou se vai conectar tudo certinho 
   if (err) {

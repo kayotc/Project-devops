@@ -21,7 +21,7 @@ function Log() {
                     alert('Por favor, preencha todas as informações abaixo')
                 } 
                 else {
-                    const response = await fetch('http://localhost:3000/users')
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
                     const users = await response.json()
 
                     //Procurar usuário pelo email
@@ -29,8 +29,7 @@ function Log() {
                     const foundUser = users.find(user => user.email === email);
 
                     if(!foundUser){
-                        alert('Usuário não encontrado, vá para a página de casdatro')
-                        navigate('/sign');
+                        alert('Usuário não encontrado, vá para a página de casdatro');
                     } else if(foundUser.password !== pass){
                         alert('Senha incorreta, por favor tente novamente');
                     } else {

@@ -1,0 +1,41 @@
+
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2302
+      MYSQL_DATABASE: teste
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: express_container
+    restart: always
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: 2302
+      DB_NAME: teste
+
+  frontend:
+    build: ./my-app
+    container_name: react_container
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+
+volumes:
+  mysql-data:
