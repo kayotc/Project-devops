@@ -1,0 +1,17 @@
+.commits{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h1{
+        margin: 10px auto;
+    }
+
+    input, textarea{
+        margin-left: 30px;
+    }
+
+    button{
+        margin: 0 auto;
+    }
+}

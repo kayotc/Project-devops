@@ -8,10 +8,26 @@ function Log() {
 
     const navigate = useNavigate();
 
+    function turnViwer(){
+
+        const iptpass = document.querySelector('.pass');
+        const viwer = document.querySelector('.viwer');
+        
+        if(iptpass.type == "password"){
+            iptpass.type = "text";
+            viwer.src = "/open.svg"
+        } else{
+            iptpass.type = "password";
+            viwer.src = "/close.svg"
+        }
+    };
+    
+
     useEffect( () =>{
             const btn = document.querySelector('.btnL');
             const iptemail = document.querySelector('.email');
             const iptpass = document.querySelector('.pass');
+            const viwer = document.querySelector('.viwer');
             
             const clicked = async () =>{
                 const email = iptemail.value.trim();
@@ -34,33 +50,40 @@ function Log() {
                         alert('Senha incorreta, por favor tente novamente');
                     } else {
                         alert(`Bem-vindo, ${foundUser.name}`);
-                        navigate('/store');
+                        navigate('/store',  { state: { userName: foundUser.name.charAt(0).toUpperCase() +foundUser.name.slice(1).toLowerCase()} });
                     }
 
                 }
-            }
-    
+            };
+
+            
+        
     
             if(btn){
                 btn.addEventListener('click', clicked)
             } 
+            
     
             return () => {
                 if(btn){
-                    btn.removeEventListener('click', clicked)
+                    btn.removeEventListener('click', clicked);
                 } 
             }
+
+        
             
     
         },[]);
 
     return (
+
+        
         <div className='main'>
             <div className=" rounded-lg content">
                 <Header />
-                <div className="inputBox">
-                    <input className='p-3 email' type="text" placeholder='Digite seu Email'/>
-                    <input className='p-3 pass' type="password" placeholder='Digite sua senha'/>
+                <div className="inputBox relative">
+                    <input className='p-3 w-full email' type="text" placeholder='Digite seu Email'/> 
+                    <input className='p-3 w-full pass' type="password" placeholder='Digite sua senha'/> <img className='h-9 w-9 viwer' src="/close.svg" alt="Visualizador" onClick={turnViwer}/>
                 </div>
                 <button className='text-xl font-medium w-2/4 btnL'>Entrar</button>
                 <p className='font-medium linkToL'>Ainda não tem uma conta? <Link className='text-red-600' to="/sign">Clique aqui</Link></p>

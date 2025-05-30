@@ -6,6 +6,8 @@ import Home from './Home.jsx'
 import Log from './Log.jsx'
 import Sign from './Sign.jsx'
 import Store from './Store.jsx'
+import Contact from './Contact.jsx';
+import UserArea from './UserArea.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +18,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/log" element={<Log />} />  
         <Route path="/sign" element={<Sign />} />  
         <Route path="/store" element={<Store />} />  
+        <Route path="/contact" element={<Contact />} />  
+        <Route path="/userarea" element={<UserArea />} />  
       </Routes>
     </Router>
   </StrictMode>,

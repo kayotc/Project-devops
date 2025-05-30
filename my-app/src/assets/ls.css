@@ -2,12 +2,11 @@
 .inputBox{
     display: flex;
     flex-direction: column;
-    gap: 13px;
-    width: 60%;
-    margin: 10px auto;
+    gap: 15px;
+    width: 80%;
+    margin: 30px auto;
     min-height: auto;
 }
-
 
 .linkToC{
     margin: 0 auto;
@@ -25,5 +24,18 @@
     margin: 40px auto;
 }
 
+
+.viwer, .viwerP, .viwerPC{
+    position: absolute;
+    right: 0;
+}
+
+.viwer, .viwerPC{
+    bottom: 8px;
+}
+
+.viwerP{
+    bottom: 30%;
+}
 
 

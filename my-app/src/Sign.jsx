@@ -12,6 +12,8 @@
             const iptemail = document.querySelector('.email');
             const iptpass = document.querySelector('.pass');
             const iptpassC = document.querySelector('.pass-confirme');
+            const viwerP = document.querySelector('.viwerP');
+            const viwerPC = document.querySelector('.viwerPC');
 
             const clicked = async () =>{
                 const name = iptname.value.trim();
@@ -58,14 +60,44 @@
                 } //Aqui termina nossa conexão com o backend 
             }
 
+            const vp = async () =>{
+                if(iptpass.type == "password"){
+                    iptpass.type = "text";
+                    viwerP.src = "/open.svg"
+                } else {
+                    iptpass.type = "password";
+                    viwerP.src = "/close.svg"
+                }
+            }
+            const vpc = async () =>{
+                if(iptpassC.type == "password"){
+                    iptpassC.type = "text";
+                    viwerPC.src = "/open.svg"
+                } else {
+                    iptpassC.type = "password";
+                    viwerPC.src = "/close.svg"
+                }
+            }
 
             if(btn){
                 btn.addEventListener('click', clicked)
             } 
+            if(viwerP){
+                viwerP.addEventListener('click', vp)
+            }
+            if(viwerPC){
+                viwerPC.addEventListener('click', vpc)
+            }
 
             return () => {
                 if(btn){
                     btn.removeEventListener('click', clicked)
+                } 
+                if(viwerP){
+                    viwerP.removeEventListener('click', vp)
+                } 
+                if(viwerPC){
+                    viwerPC.removeEventListener('click', vpc)
                 } 
             }
             
@@ -76,11 +108,11 @@
             <div className='main'>
                 <div className=" rounded-lg content">
                     <Header />
-                    <div className="inputBox">
-                        <input className='name' type="text" placeholder='Digite seu nome'/>
-                        <input className='email' type="email" placeholder='Digite seu Email'/>
-                        <input className='pass' type="password" placeholder='Digite sua senha'/>
-                        <input className='pass-confirme' type="password" placeholder='Confirme sua senha'/>
+                    <div className="inputBox relative">
+                        <input className='p-3 w-full name' type="text" placeholder='Digite seu nome'/>
+                        <input className='p-3 w-full email' type="email" placeholder='Digite seu Email'/>
+                        <input className='p-3 w-full pass' type="password" placeholder='Digite sua senha'/> <img className='h-9 w-9 viwerP' src="/close.svg" alt="Visualizador"/>
+                        <input className='p-3 w-full pass-confirme' type="password" placeholder='Confirme sua senha'/> <img className='h-9 w-9 viwerPC' src="/close.svg" alt="Visualizador"/>
                     </div>
                     <button className='text-xl font-medium w-2/4 btnC'>Cadastrar</button>
                     <p className='font-medium linkToC'>Já tem cadastro? <Link className='text-red-600' to="/log">Clique aqui</Link></p>
