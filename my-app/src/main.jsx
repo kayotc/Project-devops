@@ -8,6 +8,9 @@ import Sign from './Sign.jsx'
 import Store from './Store.jsx'
 import Contact from './Contact.jsx';
 import UserArea from './UserArea.jsx';
+import Payment from './Payment.jsx';
+import Delete from './Delete.jsx';
+import Update from './Update.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,6 +23,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/store" element={<Store />} />  
         <Route path="/contact" element={<Contact />} />  
         <Route path="/userarea" element={<UserArea />} />  
+        <Route path="/pay" element={<Payment />} />  
+        <Route path="/delete" element={<Delete />} />  
+        <Route path="/update" element={<Update />} />  
       </Routes>
     </Router>
   </StrictMode>,

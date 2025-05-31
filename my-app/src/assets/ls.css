@@ -25,16 +25,16 @@
 }
 
 
-.viwer, .viwerP, .viwerPC{
+.viwer, .viwerNPC,.viwerNP, .viwerP, .viwerPC{
     position: absolute;
     right: 0;
 }
 
-.viwer, .viwerPC{
+.viwer, .viwerPC, .viwerNPC{
     bottom: 8px;
 }
 
-.viwerP{
+.viwerP, .viwerNP{
     bottom: 30%;
 }
 

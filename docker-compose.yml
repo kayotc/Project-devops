@@ -30,11 +30,14 @@ services:
   frontend:
     build: ./my-app
     container_name: react_container
-    restart: always
     ports:
-      - "5173:80"
-    depends_on:
-      - backend
+    - "5173:5173"
+    volumes:
+      - ./my-app:/app  # Hot-reload
+      - /app/node_modules
+    environment:
+       # Comunicação entre containers
+      - CHOKIDAR_USEPOLLING=true  # Necessário para watch no Docker
 
 
 volumes:

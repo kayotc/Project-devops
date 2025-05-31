@@ -15,22 +15,23 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
-    .clearCart::after, .linkToContact::after{
+    .hello-user::after, .clearCart::after, .linkToContact::after{
         content: '';
         display: block;
         transition: ease-in-out .3s;
-        height: 3px;
+        height: 2px;
+        border-radius: 20px;
         width: 0%;
     }
 
-    .clearCart:hover::after, .linkToContact:hover::after{
+    .hello-user:hover:after, .clearCart:hover::after, .linkToContact:hover::after{
         background-color: var(--background-content);
         width: 80%;
         margin: 0 auto;
     }
 
-    .clearCart, .linkToContact{
-        filter: drop-shadow(8px 4px 2px rgba(0,0,0,0.5));
+    .hello-user, .clearCart, .linkToContact{
+        filter: drop-shadow(8px 4px 2px rgba(0, 0, 0, 0.209));
     }
 
 }

@@ -2,10 +2,13 @@ import NavBar from "./reused/NavBar.jsx";
 import Products from "./reused/Products.jsx"
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+
+
 function Store(){
 
     const location = useLocation();
-    const userName = location.state?.userName || 'Visitante';
+    const userName = location.state?.userName;
+    const userEmail = location.state?.userEmail;
 
     const [cartCount, setCartCount] = useState(0);
 
@@ -19,7 +22,7 @@ function Store(){
     return (
         <div className='main'>
             <div className='rounded-lg content'>
-                <NavBar cartCount = {cartCount} clearCart={clearCart} userName={userName}/>
+                <NavBar cartCount = {cartCount} clearCart={clearCart} userEmail = {userEmail}  userName = {userName}/>
                 <Products addToCart = {addToCart}/>
             </div>
         </div>

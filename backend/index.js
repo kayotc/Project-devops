@@ -28,8 +28,8 @@ db.connect(err => { //Caso dê erro ou se vai conectar tudo certinho
 
 //Rota Post - Criar usuários
 app.post('/users', (req, res) => {
-  const { name, email, password } = req.body;
-  const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+  const {  name, email, password } = req.body;
+  const query = 'INSERT INTO users ( name, email, password) VALUES (?, ?, ?)';
   
   db.query(query, [name, email, password], (err, result) => {
     if (err) {
@@ -60,4 +60,50 @@ app.get('/users', (req, res) => {
 });
 
 
-app.listen(port); //Porta na qual nossa API irá ficar
+// PUT - Atualizar usuário pelo Email
+app.put('/users/:email', (req, res) => {
+  const { name, email: newEmail, password } = req.body;
+  const { email: oldEmail } = req.params;
+
+  const query = 'UPDATE users SET name = ?, email = ?, password = ? WHERE email = ?';
+
+  db.query(query, [name, newEmail, password, oldEmail], (err, result) => {
+    if (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        res.status(409).send('Este e-mail já está cadastrado.');
+      } else {
+        res.status(500).send('Erro ao atualizar usuário.');
+      }
+    } else if (result.affectedRows === 0) {
+      res.status(404).send('Usuário não encontrado.');
+    } else {
+      res.status(200).json({ name, email: newEmail, password });
+    }
+  });
+});
+
+
+
+// DELETE - Remover usuário por email
+app.delete('/users/:email', (req, res) => {
+  const { email } = req.params;
+
+  const query = 'DELETE FROM users WHERE email = ?';
+
+  db.query(query, [email], (err, result) => {
+    if (err) {
+      res.status(500).send('Erro ao deletar usuário.');
+    } else if (result.affectedRows === 0) {
+      res.status(404).send('Usuário não encontrado.');
+    } else {
+      res.status(200).send('Usuário deletado com sucesso.');
+    }
+  });
+});
+
+
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+}); //Porta na qual nossa API irá ficar
+     

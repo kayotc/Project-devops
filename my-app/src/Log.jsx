@@ -27,7 +27,6 @@ function Log() {
             const btn = document.querySelector('.btnL');
             const iptemail = document.querySelector('.email');
             const iptpass = document.querySelector('.pass');
-            const viwer = document.querySelector('.viwer');
             
             const clicked = async () =>{
                 const email = iptemail.value.trim();
@@ -50,7 +49,8 @@ function Log() {
                         alert('Senha incorreta, por favor tente novamente');
                     } else {
                         alert(`Bem-vindo, ${foundUser.name}`);
-                        navigate('/store',  { state: { userName: foundUser.name.charAt(0).toUpperCase() +foundUser.name.slice(1).toLowerCase()} });
+                        navigate('/store',  { state: { userEmail: foundUser.email, userName: foundUser.name.charAt(0).toUpperCase() +foundUser.name.slice(1).toLowerCase()} });
+                        
                     }
 
                 }
