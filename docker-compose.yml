@@ -36,9 +36,7 @@ services:
       - ./my-app:/app  # Hot-reload
       - /app/node_modules
     environment:
-       # Comunicação entre containers
       - CHOKIDAR_USEPOLLING=true  # Necessário para watch no Docker
-
-
+  
 volumes:
   mysql-data:

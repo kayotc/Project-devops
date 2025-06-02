@@ -1,36 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import '../assets/navbar.css'
-import { useEffect } from 'react';
+
 
 
 function NavBar( {cartCount, clearCart, userName, userEmail }){
 
     const navigate = useNavigate();
-    
-    
 
-    useEffect(() =>{
-
-        const car = document.querySelector('.car');
-        const toPay = () => {
-            navigate('/pay');
-        }
-
-        if(car) {
-            car.addEventListener('click', toPay);
-        }
-
-        return () => {
-            if(car){
-                car.removeEventListener('click', toPay);
-            }
-        }
-    }, []);
-    
-
+    function toPay(){
+        navigate('/payment');
+    }
 
     function goToUserArea(){
-        navigate('/userarea' , {state: {userName, userEmail, } })
+        navigate('/userarea' , {state: {userName, userEmail, } });
     }
 
     return(
@@ -42,15 +24,13 @@ function NavBar( {cartCount, clearCart, userName, userEmail }){
             <p className='clearCart cursor-pointer font-medium text-xl text-white font-sans' onClick={clearCart}>
                 Limpar carrinho
             </p>
-            <div className="relative h-12 w-12  logoCar">
-                <img className='h-full w-full car' src="/carrinho.svg" alt="Imagem do carrinho"/>
+            <div className="relative h-12 w-12 logoCar" onClick={toPay}>
+                <img className='h-full w-full ' src="/carrinho.svg" alt="Imagem do carrinho"/>
                 {cartCount > 0 && (
                     <span className="absolute bottom-0 right-0 bg-white text-red-600 rounded-full text-xs w-4 h-4 flex items-center justify-center">
                         {cartCount}
                     </span>
                 )}
-
-
             </div>
         </div>
     )
